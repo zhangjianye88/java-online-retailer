@@ -1,0 +1,75 @@
+<html>
+<body>
+
+echo "===========进入git项目happymmall目录============="
+</br>
+cd /developer/git-repository/mmall
+</br>
+
+echo "==========git切换分之到mmall-v1.0==============="
+</br>
+git checkout mmall-v1.0
+</br>
+
+echo "==================git fetch======================"
+</br>
+git fetch
+</br>
+
+echo "==================git pull======================"
+</br>
+git pull
+</br>
+
+
+echo "===========编译并跳过单元测试===================="
+</br>
+mvn clean package -Dmaven.test.skip=true
+</br>
+
+
+echo "============删除旧的ROOT.war==================="
+</br>
+rm /developer/apache-tomcat-7.0.73/webapps/ROOT.war
+</br>
+
+
+echo "======拷贝编译出来的war包到tomcat下-ROOT.war======="
+</br>
+cp /developer/git-repository/mmall/target/mmall.war  /developer/apache-tomcat-7.0.73/webapps/ROOT.war
+</br>
+
+echo "============删除tomcat下旧的ROOT文件夹============="
+</br>
+rm -rf /developer/apache-tomcat-7.0.73/webapps/ROOT
+</br>
+
+
+echo "====================关闭tomcat====================="
+</br>
+/developer/apache-tomcat-7.0.73/bin/shutdown.sh
+</br>
+
+echo "================sleep 10s========================="
+</br>
+for i in {1..10}
+</br>
+do
+</br>
+&nbsp;&nbsp;&nbsp;	echo $i"s"
+</br>
+&nbsp;&nbsp;&nbsp;	sleep 1s
+</br>
+done
+</br>
+
+
+echo "====================启动tomcat====================="
+</br>
+/developer/apache-tomcat-7.0.73/bin/startup.sh
+</br>
+
+
+
+</body>
+</html>
